@@ -99,7 +99,7 @@ function Courses() {
               </Link>
             </li>
             <li className="mb-4">
-              <Link   to="/admin/dashboard" className="flex items-center cursor-default">
+              <Link   to="/admin/login" className="flex items-center cursor-default">
                 <IoMdSettings className="mr-2" /> Settings
               </Link>
             </li>
