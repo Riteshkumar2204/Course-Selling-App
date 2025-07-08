@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import logo from "/logo.webp";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, location } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -15,6 +15,7 @@ function Home() {
   const [courses, setCourses] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigateTo = useNavigate();
+   const location = useLocation();
 
   // token
   // useEffect(() => {
@@ -27,18 +28,10 @@ function Home() {
   //   }
   // }, []);
   useEffect(() => {
-  const checkLogin = () => {
     const user = localStorage.getItem("user");
-    setIsLoggedIn(!!user);
-  };
+    setIsLoggedIn(!!user); // true if user exists
+  }, [location]);
 
-  window.addEventListener("storage", checkLogin);
-
-  // check immediately too
-  checkLogin();
-
-  return () => window.removeEventListener("storage", checkLogin);
-}, []);
 
 
   // fetch courses
