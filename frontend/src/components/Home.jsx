@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import logo from "/logo.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -14,6 +14,7 @@ import { BACKEND_URL } from "../utils/utils.js";
 function Home() {
   const [courses, setCourses] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigateTo = useNavigate();
 
   // token
   useEffect(() => {
@@ -50,6 +51,7 @@ function Home() {
       toast.success(response.data.message);
       localStorage.removeItem("user");
       setIsLoggedIn(false);
+       navigateTo("/login");
     } catch (error) {
       console.log("Error in logging out ", error);
       toast.error(error.response.data.errors || "Error in logging out");
@@ -109,13 +111,12 @@ function Home() {
           </div>
           <div className="space-x-4">
             {isLoggedIn ? (
-              <button
-                onClick={handleLogout}
-                className="bg-transparent text-white text-xs md:text-lg md:py-2 md:px-4 p-2 border border-white rounded"
-              >
-                Logout
-              </button>
-            ) : (
+              // <button
+              //   onClick={handleLogout}
+              //   className="bg-transparent text-white text-xs md:text-lg md:py-2 md:px-4 p-2 border border-white rounded"
+              // >
+              //   Logout
+              // </button>
               <>
                 <Link
                   to={"/login"}
@@ -130,6 +131,29 @@ function Home() {
                   Signup
                 </Link>
               </>
+            ) : (
+
+               <button
+                onClick={handleLogout}
+                className="bg-transparent text-white text-xs md:text-lg md:py-2 md:px-4 p-2 border border-white rounded"
+              >
+                Logout
+              </button>
+
+              // <>
+              //   <Link
+              //     to={"/login"}
+              //     className="bg-transparent text-white text-xs md:text-lg md:py-2 md:px-4 p-2 border border-white rounded"
+              //   >
+              //     Login
+              //   </Link>
+              //   <Link
+              //     to={"/signup"}
+              //     className="bg-transparent text-white text-xs md:text-lg md:py-2 md:px-4 p-2 border border-white rounded"
+              //   >
+              //     Signup
+              //   </Link>
+              // </>
             )}
           </div>
         </header>
