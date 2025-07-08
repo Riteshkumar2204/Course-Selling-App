@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import logo from "/logo.webp";
-import { Link, useNavigate, location } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
