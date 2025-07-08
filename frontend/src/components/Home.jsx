@@ -17,14 +17,29 @@ function Home() {
   const navigateTo = useNavigate();
 
   // token
+  // useEffect(() => {
+  //   const user = localStorage.getItem("user");
+  //   if (user) {
+  //     setIsLoggedIn(true);
+  //   } 
+  //   else {
+  //     setIsLoggedIn(false);
+  //   }
+  // }, []);
   useEffect(() => {
+  const checkLogin = () => {
     const user = localStorage.getItem("user");
-    if (user) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
+    setIsLoggedIn(!!user);
+  };
+
+  window.addEventListener("storage", checkLogin);
+
+  // check immediately too
+  checkLogin();
+
+  return () => window.removeEventListener("storage", checkLogin);
+}, []);
+
 
   // fetch courses
   useEffect(() => {
